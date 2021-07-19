@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "compra-inteligente",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

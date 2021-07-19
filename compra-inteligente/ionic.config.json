@@ -1,0 +1,7 @@
+{
+  "name": "compra-inteligente",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
