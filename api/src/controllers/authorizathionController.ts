@@ -13,6 +13,7 @@ class AuthorizathionController{
         if(user != null){
             if(senha == user.senha){
                 let token = jwt.sign({id: user.id_usuario}, 'cenorinha');
+                console.log(token);
                 return res.json(token);
             }else{
                 return res.status(401).send('senha incorreta');
