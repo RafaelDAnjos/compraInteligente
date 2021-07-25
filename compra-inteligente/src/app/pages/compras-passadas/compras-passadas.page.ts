@@ -11,5 +11,7 @@ export class ComprasPassadasPage implements OnInit {
 
   ngOnInit() {
   }
-
+  olamundo(){
+    console.log("olá mundo!");
+  }
 }

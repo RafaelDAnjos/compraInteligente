@@ -1,23 +1,22 @@
 import { database } from '../database/connection';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import Carrinho from '../modules/carrinho';
 
 class CarrinhoController {
 
-    async criarCarrinho(req: Request, res: Response) {
+    criarCarrinho(req: Request, res: Response) {
         const { nome, token } = req.body;
 
         jwt.verify(token, 'cenorinha', async (err: any, decode: any) => {
 
-            const carrinhos = await database('carrinho').where({ id_usuario: decode.id }).select('*');
+            const carrinhos:Carrinho[] = await database('carrinho').where({ id_usuario: decode.id }).select('*');
 
             if (carrinhos.length < 15) {
 
                 console.log(carrinhos);
-                const carrinho = {
-                    nome: nome,
-                    id_usuario: decode.id
-                }
+                const carrinho = new Carrinho(nome,decode.id);
+                    
                 await database('carrinho').insert(carrinho);
                 return res.status(200).send();
             }else{
@@ -32,7 +31,7 @@ class CarrinhoController {
         const {token} = req.body;
 
         jwt.verify(token, 'cenorinha', async (err: any, decode:any)=>{
-            const carrinhos = await database('carrinho').where({id_usuario: decode.id}).select('*');
+            const carrinhos:Carrinho[] = await database('carrinho').where({id_usuario: decode.id}).select('*');
 
             return res.json(carrinhos);
 
