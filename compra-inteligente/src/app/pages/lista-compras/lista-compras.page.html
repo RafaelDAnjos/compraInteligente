@@ -15,47 +15,29 @@
     </ion-item>
   </ion-header>
   <div id = "container">
-      <ion-card>
+      <ion-list>
 
-        <ion-item>
-          <ion-card-title>Lista de compras A</ion-card-title>
-          <ion-buttons slot = 'end'>
-            
-            <ion-button color = 'primary-contrast' size = 'small'><ion-icon name = 'share-social-outline' color = 'success'></ion-icon></ion-button>
-            <ion-button color = 'primary-contrast' size = 'small '><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
-          </ion-buttons>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-
-        <ion-item>
-          <ion-card-title>Lista de compras B</ion-card-title>
-          <ion-buttons slot = 'end'>
-            
-            <ion-button color = 'primary-contrast' size = 'small'><ion-icon name = 'share-social-outline' color = 'success'></ion-icon></ion-button>
-            <ion-button color = 'primary-contrast' size = 'small '><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
-          </ion-buttons>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-
-        <ion-item>
-          <ion-card-title>Lista de compras C</ion-card-title>
-          <ion-buttons slot = 'end'>
-            
-            <ion-button color = 'primary-contrast' size = 'small'><ion-icon name = 'share-social-outline' color = 'success'></ion-icon></ion-button>
-            <ion-button color = 'primary-contrast' size = 'small '><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
-          </ion-buttons>
-        </ion-item>
-      </ion-card>
-
-  </div>
+        <ion-card *ngFor = 'let lista of listas_compra'>
+          
+          <ion-item>
+            <ion-card-title>{{lista.titulo}}</ion-card-title>
+            <ion-buttons slot = 'end'>
+              
+              <ion-button color = 'primary-contrast' size = 'small'><ion-icon name = 'share-social-outline' color = 'success'></ion-icon></ion-button>
+              <ion-button color = 'primary-contrast' size = 'small '><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-card>
+        
+        
+      </ion-list>
+    </div>
  
 
 </ion-content>
 <ion-footer>
   <ion-toolbar>
 
-    <ion-button><ion-icon name = 'cart' slot= 'icon-only' color = 'primary-contrast'></ion-icon> <ion-icon name = 'add' slot = 'icon-only' color = "primary-contrast"></ion-icon></ion-button>
+    <ion-button (click) = "addCart()"><ion-icon name = 'cart' slot= 'icon-only' color = 'primary-contrast'></ion-icon> <ion-icon name = 'add' slot = 'icon-only' color = "primary-contrast"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>

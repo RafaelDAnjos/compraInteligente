@@ -5,10 +5,11 @@ import {Request,Response} from 'express';
 class UsuarioController{
 
     async criarUsuario(req:Request,res:Response){
-        const {nome,email,senha} = req.body;
-        const usuario = req.body;
-        const userEmail = await (await database('usuario').where({email: email}).select('email')).pop();
-        console.log(userEmail);
+        
+        let usuario  = new Usuario(req.body.nome,req.body.email,req.body.senha);
+        
+        const userEmail = await (await database('usuario').where({email: usuario.email}).select('email')).pop();
+        
         if(userEmail!=null){
             return res.status(401).send("Email já existente");
         }else{
@@ -24,7 +25,8 @@ class UsuarioController{
 
     }
     async listarUsuarios(req:Request,res:Response){
-        const usuarios = await database('usuario').select('*');
+        
+        const usuarios:Usuario[] = await database('usuario').select('*');        
         return res.json(usuarios);
     }
 

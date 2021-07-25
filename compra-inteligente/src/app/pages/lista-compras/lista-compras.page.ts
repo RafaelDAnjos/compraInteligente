@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-lista-compras',
@@ -7,8 +7,17 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./lista-compras.page.scss'],
 })
 export class ListaComprasPage implements OnInit {
-
-  constructor(private navCtrl:NavController) { }
+  listas_compra: any[] = [{
+    titulo:'compra 1'
+  },
+  {
+    titulo:'compra 2'
+  },
+  {
+    titulo:'compra 3'
+  },
+]
+  constructor(private navCtrl:NavController, private alertCtrl:AlertController) { }
 
   ngOnInit() {
   }
@@ -19,5 +28,10 @@ export class ListaComprasPage implements OnInit {
   logout(){
     this.navCtrl.navigateForward('home');
   }
-
+  async addCart(){
+    const alerta = await this.alertCtrl.create({
+      message: "Adicionado"
+    });
+    alerta.present();
+  }
 }
