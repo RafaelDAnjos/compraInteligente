@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { UsuarioService } from '../services/usuario.service';
 
 
@@ -12,7 +12,7 @@ export class HomePage {
   inputEmail: string;
   inputSenha: string;
   usuarios:any[] = [];
-  constructor(private navCtrl:NavController,private usuarioService :UsuarioService, private alertCtrl:AlertController){}
+  constructor(private navCtrl:NavController,private usuarioService :UsuarioService, private toastCtrl:ToastController){}
 
   showTelaCadastro(){
     this.navCtrl.navigateForward('cadastro');
@@ -24,15 +24,18 @@ export class HomePage {
     }
 
     try{
-      let token = await this.usuarioService.validarUsuario(usuario);
+      let token:any = await this.usuarioService.validarUsuario(usuario);
       console.log(token);
-      localStorage.setItem('authorization',JSON.stringify(token));
+      localStorage.setItem('authorization',token);
       this.showlistaCompras();
     
 
     }catch(err){
-      const alerta = await this.alertCtrl.create({
-        message: err.error
+      const alerta = await this.toastCtrl.create({
+        message: err.error,
+        position: 'top',
+        duration: 2000,
+        color: 'danger'
       });
       alerta.present();
     }
