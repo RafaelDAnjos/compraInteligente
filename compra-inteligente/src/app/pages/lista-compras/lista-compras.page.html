@@ -1,30 +1,26 @@
 <ion-header>
   <ion-toolbar color = primary>
     <ion-title>Lista de compras</ion-title>
+    <ion-buttons slot = 'end' >
+      <ion-button  (click)= 'logout()'><ion-icon color ='dark' name = 'exit' slot = 'icon-only' ></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-buttons slot = 'start' >
+      <ion-button  (click)= "showComprasPassadas()"><ion-icon color = 'dark' name = 'list' slot = 'icon-only' ></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header>
-    <ion-item>
-      <ion-buttons>
-        <ion-button> <ion-icon name = 'cart' slot = 'icon-only' color = "secondary"></ion-icon></ion-button>
-        <ion-button (click)= "showComprasPassadas()"><ion-icon name = 'list' slot = 'icon-only' color = "secondary"></ion-icon></ion-button>
-        <ion-button (click)= 'logout()'><ion-icon name = 'exit' slot = 'icon-only' color = "secondary"></ion-icon></ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-header>
+  
   <div id = "container">
       <ion-list>
 
         <ion-card *ngFor = 'let lista of listas_compra'>
           
-          <ion-item>
-            <ion-card-title>{{lista.nome}}</ion-card-title>
+          <ion-item >
+            <ion-card-title (click)= "showPageCarrinho(lista)">{{lista.nome}}</ion-card-title>
             <ion-buttons slot = 'end'>
-              
-              <ion-button color = 'primary-contrast' size = 'small'><ion-icon name = 'share-social-outline' color = 'success'></ion-icon></ion-button>
-              <ion-button color = 'primary-contrast' size = 'small '><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
+              <ion-button color = 'primary-contrast' size = 'small ' (click)='deletarCarrinho(lista)' ><ion-icon name = 'trash' color = 'danger'></ion-icon></ion-button>
             </ion-buttons>
           </ion-item>
         </ion-card>
@@ -38,6 +34,6 @@
 <ion-footer>
   <ion-toolbar>
 
-    <ion-button (click) = "addCart()"><ion-icon name = 'cart' slot= 'icon-only' color = 'primary-contrast'></ion-icon> <ion-icon name = 'add' slot = 'icon-only' color = "primary-contrast"></ion-icon></ion-button>
+    <ion-button expand='full' (click) = "addCart()"><ion-icon name = 'cart' slot= 'icon-only' color = 'primary-contrast'></ion-icon> <ion-icon name = 'add' slot = 'icon-only' color = "primary-contrast"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -31,5 +31,9 @@ export class CarrinhoService {
 
     return this.http.post(`${this.url}/criarCarrinho`,js,httpOptions).toPromise();
   }
+  deletarCarrinho(carrinho:any):Promise<any>{
+    return this.http.post(`${this.url}/deletarCarrinho`,carrinho).toPromise();
+  }
+  
 
 }
