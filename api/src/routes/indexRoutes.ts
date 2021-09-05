@@ -16,13 +16,15 @@ routes.post('/autorizar',autorizationController.autorizar);
 //carrinho Routes
 routes.post('/criarCarrinho',carrinhoController.criarCarrinho);
 routes.get('/buscarCarrinhos',carrinhoController.buscarCarrinhos);
+routes.post('/deletarCarrinho',carrinhoController.deletarCarrinho);
 
 //item Routes
 routes.post('/criarItem',itemController.criaritem);
-routes.get('/buscarItens',itemController.buscarItens);
+routes.post('/buscarItens',itemController.buscarItens);
+routes.post('/deletarItemCarrinho',itemController.deletarItemCarrinho);
 
 //compras Routes
-routes.post('/criarCompras',compraController.criarCompra);
+routes.post('/criarCompra',compraController.criarCompra);
 routes.get('/buscarCompras',compraController.buscarCompras);
 
 

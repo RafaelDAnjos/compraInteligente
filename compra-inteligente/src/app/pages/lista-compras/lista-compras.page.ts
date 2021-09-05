@@ -78,4 +78,16 @@ export class ListaComprasPage implements OnInit {
 
   }
 
+  async showPageCarrinho(lista:any){
+
+    localStorage.setItem('lista-visualizada',JSON.stringify(lista));
+    this.navCtrl.navigateForward('carrinho');
+    
+
+  }
+  async deletarCarrinho(lista:any){
+    this.carService.deletarCarrinho(lista);
+    this.buscarCarrinhos();
+  }
+
 }

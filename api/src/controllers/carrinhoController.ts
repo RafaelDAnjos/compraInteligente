@@ -43,6 +43,16 @@ class CarrinhoController {
         });
 
     }
+
+    async deletarCarrinho(req:Request,res:Response){
+        const {nome, id_carrinho, id_usuario}= req.body
+
+        await database('carrinho_item').delete().where({id_carrinho:id_carrinho});
+        await database('carrinho').delete().where({id_carrinho:id_carrinho});
+
+
+    }
+
     alteraCarrinho(req: Request, res: Response) {
 
     }

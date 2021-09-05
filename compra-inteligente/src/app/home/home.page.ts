@@ -18,6 +18,7 @@ export class HomePage {
     this.navCtrl.navigateForward('cadastro');
   }
   async verificar(){
+    //logando no app
     let usuario = {
       email: this.inputEmail,
       senha: this.inputSenha

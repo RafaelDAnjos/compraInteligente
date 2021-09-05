@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar  color = primary>
+    <ion-title>{{carrinho.nome}}</ion-title>
+    <ion-buttons slot = 'start'>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot = 'end' >
+      <ion-button  (click)= 'logout()'><ion-icon color ='dark' name = 'exit' slot = 'icon-only' ></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor = "let item of itens">
+    <ion-checkbox slot="start" (ionChange) = trocarCheck(item,$event)></ion-checkbox>
+    <ion-label><ion-card-title>{{item.nome}}</ion-card-title></ion-label>
+    <ion-button color = 'primary-contrast' (click)= "deletarItem(item)"><ion-icon name = 'trash' color = 'danger' ></ion-icon></ion-button>
+  </ion-item>
+</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)= "adicionarItem()" expand='full'>Adicionar Item</ion-button>
+        </ion-col>  
+        <ion-col>
+          <ion-button (click)= "efetuarCompra()" expand= 'full'>Comprar</ion-button>
+        </ion-col>
+      </ion-row>
+    
+    </ion-grid>
+  </ion-toolbar>
+
+</ion-footer>
