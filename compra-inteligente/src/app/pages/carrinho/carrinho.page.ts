@@ -105,6 +105,7 @@ export class CarrinhoPage implements OnInit {
     }
     this.itemService.deletarItem(itemDel);
     console.log(itemDel);
+    setTimeout(() => { this.buscarItens(); }, 1000);
     this.buscarItens();
     console.log(this.itens);
   }

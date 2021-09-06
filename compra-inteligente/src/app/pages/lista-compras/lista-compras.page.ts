@@ -10,14 +10,14 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
 export class ListaComprasPage implements OnInit {
   listas_compra: any[] = []
   constructor(private navCtrl:NavController, private alertCtrl:AlertController,private carService:CarrinhoService, private toastCtrl:ToastController) { 
-    
-    this.buscarCarrinhos();
+    setTimeout(() => { this.buscarCarrinhos(); }, 1000);
     
   }
   ngOnInit() {}
 
   async buscarCarrinhos(){
     this.listas_compra = await this.carService.buscarCarrinhos();
+    console.log(this.listas_compra);
   }
 
   showComprasPassadas(){
@@ -64,6 +64,8 @@ export class ListaComprasPage implements OnInit {
         nome: newCarrinho
       }
       this.carService.criarCarrinhos(car);
+      setTimeout(() => { this.buscarCarrinhos(); }, 1000);
+      
     }catch(err){
       const alerta = await this.toastCtrl.create({
         message: err.error,
@@ -74,6 +76,7 @@ export class ListaComprasPage implements OnInit {
       alerta.present();
 
     }
+    
     
 
   }
@@ -87,6 +90,7 @@ export class ListaComprasPage implements OnInit {
   }
   async deletarCarrinho(lista:any){
     this.carService.deletarCarrinho(lista);
+    setTimeout(() => { this.buscarCarrinhos(); }, 1000);
     this.buscarCarrinhos();
   }
 
