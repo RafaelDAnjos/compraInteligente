@@ -31,6 +31,12 @@ export class CadastroPage implements OnInit {
 
       try{
         await this.usuarioService.criarUsuario(usuario);
+        let user = {
+          email:usuario.email,
+          senha: usuario.senha
+        }
+        let token:any = await this.usuarioService.validarUsuario(user);
+        localStorage.setItem('authorization',token);
         this.showlistaCompras();
       }catch(err){
         const alerta = await this.alertaCtrl.create({
